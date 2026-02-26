@@ -9,7 +9,6 @@ class Auto:
 def obtener_anio(auto):
     return auto.anio
 auto1 = Auto("Toyota", "Hilux", 2017)
-
 auto2 = Auto("Toyota", "Corolla", 2015)
 auto3 = Auto("Ford", "Mustang", 2025)
 auto4 = Auto("Dodge", "Challenger", 2015)
