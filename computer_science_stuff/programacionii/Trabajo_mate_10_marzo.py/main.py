@@ -1,112 +1,134 @@
 import math
 import random
-# Importamos NUESTRA clase desde el otro archivo
-from mate_prog_func import Funciones
+from mate_prog_func import Funciones, Punto, Figuras
 
-# 1. GENERACIÓN DE NÚMEROS ALEATORIOS
-# randint(1, 10) genera enteros: 1, 2, 3...
-# uniform(1, 10) genera flotantes: 1.45, 7.89, 3.14...
-A = random.randint(1, 10)
-B = random.uniform(1, 10)
-C = random.uniform(-10, 10)
+def imprimir_formateado(nombre_funcion, resultado):
+    """Evita errores al imprimir textos como 'Indefinido' con formato de número"""
+    if isinstance(resultado, str):
+        print(f"{nombre_funcion}: {resultado}")
+    else:
+        print(f"{nombre_funcion}: {resultado:.4f}")
 
-print("--- VARIABLES ALEATORIAS ---")
-# La sintaxis {:.2f} le dice a Python: "Imprime esta variable, pero recórtala a solo 2 decimales"
-print(f"A = {A} | B = {B:.2f} | C = {C:.2f}\n")
-
-# 2. INSTANCIACIÓN (Crear el objeto)
-# Aquí llamamos al __init__ de la clase. Construimos nuestra "calculadora"
-# llamada "mis_funciones" y le metemos los números aleatorios que acabamos de crear.
-mis_funciones = Funciones(A, B, C)
-
-# 3. ENTRADA DE DATOS DEL USUARIO
-valor_inicial = int(input("Ingrese el valor inicial de x > "))
-valor_final = int(input("Ingrese el valor final de x > "))
-
-# 4. EVALUACIÓN USANDO LA FUNCIÓN DE ORDEN SUPERIOR
-print("\n--- EVALUANDO EN PUNTO INICIAL (x = {}) ---".format(valor_inicial))
-
-# ¡OJO AQUÍ! Mira cómo usamos funcion_master.
-# Primer parámetro: el número a evaluar (valor_inicial).
-# Segundo parámetro: EL NOMBRE DE LA FUNCIÓN que queremos usar (mis_funciones.potencia).
-# Nota que NO le ponemos paréntesis a .potencia, porque no la estamos ejecutando ahí, 
-# se la estamos "pasando" como paquete a funcion_master para que ELLA la ejecute adentro.
-print(f"Potencia: {mis_funciones.funcion_master(valor_inicial, mis_funciones.potencia):.4f}")
-print(f"Exponencial: {mis_funciones.funcion_master(valor_inicial, mis_funciones.exponencial):.4f}")
-print(f"Trigonométrica: {mis_funciones.funcion_master(valor_inicial, mis_funciones.trigonometrica):.4f}")
-print(f"Logarítmica: {mis_funciones.funcion_master(valor_inicial, mis_funciones.logaritmica)}")
-print(f"Radical: {mis_funciones.funcion_master(valor_inicial, mis_funciones.radical)}")
-
-print("\n--- EVALUANDO EN PUNTO FINAL (x = {}) ---".format(valor_final))
-# Repetimos exactamente lo mismo, pero pasándole el "valor_final" en lugar del inicial
-print(f"Potencia: {mis_funciones.funcion_master(valor_final, mis_funciones.potencia):.4f}")
-print(f"Exponencial: {mis_funciones.funcion_master(valor_final, mis_funciones.exponencial):.4f}")
-print(f"Trigonométrica: {mis_funciones.funcion_master(valor_final, mis_funciones.trigonometrica):.4f}")
-print(f"Logarítmica: {mis_funciones.funcion_master(valor_final, mis_funciones.logaritmica)}")
-print(f"Radical: {mis_funciones.funcion_master(valor_final, mis_funciones.radical)}")
-
-# ==========================================
-# EXTRA: CÁLCULO DEL ÁREA DEL TRAPECIO
-# ==========================================
-print("\n--- CÁLCULO DE ÁREA DE UN TRAPECIO (Básico) ---")
-base_mayor = float(input("Ingrese la base mayor > "))
-base_menor = float(input("Ingrese la base menor > "))
-altura = float(input("Ingrese la altura > "))
-
-# FUNCIONES LAMBDA
-# Una función lambda es una función "desechable" de una sola línea. No usa "def" ni "return".
-# Estructura:  nombre = lambda parametros : formula_a_ejecutar
-# Tu profe pidió usar funciones de orden superior O lambdas. Aquí le demuestras que sabes usar ambas.
-calcular_trapecio = lambda B, b, h: ((B + b) * h) / 2
-
-# Ejecutamos la función lambda pasándole los 3 datos que tecleó el usuario
-area = calcular_trapecio(base_mayor, base_menor, altura)
-print(f"El área del trapecio simple es: {area:.2f}")
-
-import math
-import random
-from mate_prog_func import Funciones
-
-A = random.randint(1, 10)
-B = random.uniform(1, 10)
-C = random.uniform(-10, 10)
-
-print(f"Valores generados: A={A}, B={B:.2f}, C={C:.2f}\n")
-
-
-mis_funciones = Funciones(A, B, C)
-
-
-valor_inicial = int(input("Ingrese el inicio de la barda (valor inicial x) > "))
-valor_final = int(input("Ingrese el fin de la barda (valor final x) > "))
-N = int(input("¿En cuántas rebanadas (trapecios) deseas dividirla? (N) > "))
-
-
-calcular_trapecio = lambda altura1, altura2, ancho: ((altura1 + altura2) * ancho) / 2
-
-print("\n--- CALCULANDO ÁREA DE LA FUNCIÓN POTENCIA ---")
-
-ancho_rebanada = (valor_final - valor_inicial) / N
-
-area_total = 0
-
-x_actual = valor_inicial 
-
-for i in range(N):
+if __name__ == "__main__":
     
-    x0 = x_actual                  
-    x1 = x_actual + ancho_rebanada 
-    
-  
-    altura_izq = mis_funciones.funcion_master(x0, mis_funciones.potencia)
-    altura_der = mis_funciones.funcion_master(x1, mis_funciones.potencia)
-    
-   
-    area_rebanada = calcular_trapecio(altura_izq, altura_der, ancho_rebanada)
-    
+    # --- 1. VARIABLES ALEATORIAS ---
+    A = random.randint(1, 10)
+    B = random.uniform(1, 10)
+    C = random.uniform(-10, 10)
 
-    area_total = area_total + area_rebanada
-    
-    x_actual = x1 
+    print("--- VARIABLES ALEATORIAS ---")
+    print(f"A = {A} | B = {B:.2f} | C = {C:.2f}\n")
 
-print(f"El área total bajo la curva de la función potencia es: {area_total:.4f}")
+    mis_funciones = Funciones(A, B, C)
+
+    diccionario_funciones = {
+        "Potencia": mis_funciones.potencia,
+        "Exponencial": mis_funciones.exponencial,
+        "Trigonométrica": mis_funciones.trigonometrica,
+        "Logarítmica": mis_funciones.logaritmica,
+        "Radical": mis_funciones.radical
+    }
+
+    # --- 2. PUNTOS INICIAL Y FINAL ---
+    try:
+        x0 = float(input("Ingrese el valor inicial de x (x0) > "))
+        x1 = float(input("Ingrese el valor final de x (x1) > "))
+    except ValueError:
+        print("Error: Ingrese números válidos. Usando 1.0 y 5.0 por defecto.")
+        x0, x1 = 1.0, 5.0
+
+    print(f"\n--- EVALUANDO EN PUNTO INICIAL (x0 = {x0}) ---")
+    for nombre, func in diccionario_funciones.items():
+        imprimir_formateado(nombre, mis_funciones.funcion_master(x0, func))
+
+    print(f"\n--- EVALUANDO EN PUNTO FINAL (x1 = {x1}) ---")
+    for nombre, func in diccionario_funciones.items():
+        imprimir_formateado(nombre, mis_funciones.funcion_master(x1, func))
+
+
+    print("\n--- CALCULO DE ÁREA (1 SOLO TRAPECIO ENTRE x0 y x1) ---")
+    
+    ancho_total = abs(x1 - x0)
+    calcular_trapecio_lambda = lambda y_izq, y_der, base: ((y_izq + y_der) * base) / 2
+
+    for nombre, func in diccionario_funciones.items():
+        y0 = mis_funciones.funcion_master(x0, func)
+        y1 = mis_funciones.funcion_master(x1, func)
+        
+        if isinstance(y0, str) or isinstance(y1, str):
+            print(f"{nombre}: Indefinido (No se puede formar el trapecio)")
+        else:
+            area_unica = calcular_trapecio_lambda(y0, y1, ancho_total)
+            print(f"{nombre}: {area_unica:.4f} unidades cuadradas")
+
+
+    print("\n--- AREA APROXIMADA DIVIDIDA EN N TRAPECIOS ---")
+    try:
+        N = int(input("¿En cuantas sub-divisiones (N) desea calcular el área? > "))
+    except ValueError:
+        print("Usando N=10 por defecto.")
+        N = 10
+
+    if N > 0:
+        ancho_rebanada = ancho_total / N
+        
+        lista_puntos_x = []
+        for i in range(N + 1):
+            punto = x0 + (i * ancho_rebanada)
+            lista_puntos_x.append(punto)
+            
+        print(f"\nLista de {len(lista_puntos_x)} puntos 'x' generados:")
+        print([round(p, 2) for p in lista_puntos_x])
+        print("\nCalculando suma de áreas...")
+
+        for nombre, func in diccionario_funciones.items():
+            area_total = 0
+            es_valido = True
+            
+            for i in range(len(lista_puntos_x) - 1):
+                x_act = lista_puntos_x[i]
+                x_sig = lista_puntos_x[i + 1]
+                
+                y_act = mis_funciones.funcion_master(x_act, func)
+                y_sig = mis_funciones.funcion_master(x_sig, func)
+                
+                if isinstance(y_act, str) or isinstance(y_sig, str):
+                    es_valido = False
+                    break
+                
+                area_rebanada = calcular_trapecio_lambda(y_act, y_sig, ancho_rebanada)
+                area_total += area_rebanada
+                
+            if es_valido:
+                print(f"Area total ({nombre}): {area_total:.4f}")
+            else:
+                print(f"Area total ({nombre}): Indefinida en este intervalo.")
+    else:
+        print("El número de trapecios debe ser mayor a 0.")
+
+    print("\n------------------ CLASIFICADOR AUTOMÁTICO DE CUADRILÁTEROS -----------------")
+    coordenadas_azar = []
+    for _ in range(4):
+        x = random.randint(0, 10)
+        y = random.randint(0, 10)
+        coordenadas_azar.append((x, y))
+        
+    cx = sum(coord[0] for coord in coordenadas_azar) / 4
+    cy = sum(coord[1] for coord in coordenadas_azar) / 4
+    coord_ordenadas = sorted(coordenadas_azar, key=lambda c: math.atan2(c[1] - cy, c[0] - cx))
+
+    esquina1 = Punto(coord_ordenadas[0][0], coord_ordenadas[0][1])
+    esquina2 = Punto(coord_ordenadas[1][0], coord_ordenadas[1][1])
+    esquina3 = Punto(coord_ordenadas[2][0], coord_ordenadas[2][1])
+    esquina4 = Punto(coord_ordenadas[3][0], coord_ordenadas[3][1])
+
+    print("Esquinas ordenadas generadas:")
+    print(f"P1: ({esquina1.x}, {esquina1.y})")
+    print(f"P2: ({esquina2.x}, {esquina2.y})")
+    print(f"P3: ({esquina3.x}, {esquina3.y})")
+    print(f"P4: ({esquina4.x}, {esquina4.y})")
+
+    mi_figura = Figuras(esquina1, esquina2, esquina3, esquina4)
+    resultado = mi_figura.clasificar_figura()
+
+    print(f"\n-> ¡La figura resultante es un: {resultado.upper()}! <-")

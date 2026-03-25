@@ -15,8 +15,8 @@ class Sumador:
     @staticmethod
     def divPar(x):
         return(1/(x*2))
-#print(Sumador.suma(3,5,Sumador.natural))
-#print(Sumador.suma(3,5,Sumador.cubo))
-#sprint(Sumador.suma(3,5,Sumador.divPar))
+print(Sumador.suma(3,5,Sumador.natural))
+print(Sumador.suma(3,5,Sumador.cubo))
+print(Sumador.suma(3,5,Sumador.divPar))
 s = Sumador()
 print(s.suma(3,5,s.natural))

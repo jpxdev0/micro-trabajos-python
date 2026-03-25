@@ -41,7 +41,7 @@ class Automovil:
         # Retorna un nuevo objeto Automovil instanciado con esos datos aleatorios
         return Automovil(marca, modelo, anio)
 
-    # 4. MÉTODOS MÁGICOS (Dunder methods)
+    # 4. metodos magicos
     # Define cómo se imprime el objeto en texto
     def __str__(self):
         return f"Soy un {self.marca} {self.modelo} del anio {self.anio}"
@@ -59,7 +59,7 @@ class Automovil:
     # 5. ALGORITMO DE ORDENAMIENTO: MERGE SORT (Mezcla)
     # ---------------------------------------------------------
 
-    # MÉTODO FUSIONAR (La parte de "Vencerás")
+    # MÉTODO FUSIONAR 
     # Toma dos mitades de una lista que ya están ordenadas y las combina en una sola.
     @staticmethod
     def fusionar(lista, o, mitad, i):

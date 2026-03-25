@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 html_tienda = """
 <html>
   <body>
-    <div class="producto">
+    <div clas="producto">
       <h2 class="titulo">Balatro (PC)</h2>
       <span class="precio">$15.00</span>
     </div>
@@ -37,4 +37,3 @@ for caja in cajas_productos:
     
     # Imprimimos el resultado ensamblado
     print(f"-> El juego {titulo} tiene un costo de {precio}")
-    
